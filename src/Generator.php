@@ -89,6 +89,7 @@ class Generator
                 $this->addDeliveries($deliveries);
             }
 
+            $this->beforeOffers();
             $this->addOffers($offers);
             $this->addFooter();
 
@@ -222,6 +223,13 @@ class Generator
         $this->addOfferCondition($offer);
 
         $this->writer->fullEndElement();
+    }
+
+    /**
+     * Add custom tags for generator inheritors.
+     */
+    protected function beforeOffers()
+    {
     }
 
     /**
