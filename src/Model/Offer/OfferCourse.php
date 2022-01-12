@@ -48,6 +48,8 @@ class OfferCourse extends AbstractOffer
             ->setValue($duration);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setSchedule(array $schedule)
@@ -60,6 +62,8 @@ class OfferCourse extends AbstractOffer
 
             $this->addParam($param);
         }
+
+        return $this;
     }
 
     public function setIsFlexibleDates($isFlexibleDates)
@@ -69,6 +73,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $isFlexibleDates);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setClosestDate(DateTimeInterface $dateTime)
@@ -78,6 +84,8 @@ class OfferCourse extends AbstractOffer
             ->setValue($dateTime->format('Y-m-d'));
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHoursPerWeek($hours)
@@ -87,6 +95,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((int) $hours);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setDifficulty($difficulty)
@@ -96,6 +106,8 @@ class OfferCourse extends AbstractOffer
             ->setValue($difficulty);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setIsFlexibleDeliveryDates($isFlexibleDeliveryDates)
@@ -105,6 +117,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $isFlexibleDeliveryDates);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasTrialPeriod($hasTrialPeriod)
@@ -114,6 +128,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasTrialPeriod);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasVideo($hasVideo)
@@ -123,6 +139,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasVideo);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasTests($hasTests)
@@ -132,6 +150,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasTests);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasPractice($hasPractise)
@@ -141,6 +161,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasPractise);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setDiscountPrice($discountPrice)
@@ -150,6 +172,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((float) $discountPrice);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setDiscountFinishDate(DateTimeInterface $discountFinishDate)
@@ -159,6 +183,8 @@ class OfferCourse extends AbstractOffer
             ->setValue($discountFinishDate->format('Y-m-d'));
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setMonthlyPrice($monthlyPrice)
@@ -168,6 +194,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((float) $monthlyPrice);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setMonthlyDiscountPrice($monthlyDiscountPrice)
@@ -177,6 +205,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((float) $monthlyDiscountPrice);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasTeacher($hasTeacher)
@@ -186,6 +216,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasTeacher);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasWebinars($hasWebinars)
@@ -195,6 +227,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasWebinars);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     public function setHasHomeworks($hasHomeworks)
@@ -204,6 +238,8 @@ class OfferCourse extends AbstractOffer
             ->setValue((bool) $hasHomeworks);
 
         $this->addParam($param);
+
+        return $this;
     }
 
     /**
