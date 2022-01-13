@@ -80,12 +80,16 @@ class OfferParam
     }
 
     /**
-     * @param string $value
+     * @param mixed $value
      *
      * @return OfferParam
      */
     public function setValue($value)
     {
+        if (is_bool($value)) {
+            $value = $value ? 'true' : 'false';
+        }
+
         $this->value = $value;
 
         return $this;
