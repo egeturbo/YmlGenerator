@@ -48,6 +48,10 @@ class EducationGenerator extends Generator
      */
     private function addSets()
     {
+        if ($this->sets === []) {
+            return;
+        }
+
         $this->writer->startElement('sets');
 
         foreach ($this->sets as $set) {
