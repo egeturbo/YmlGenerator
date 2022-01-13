@@ -54,13 +54,15 @@ class OfferCourse extends AbstractOffer
 
     public function setSchedule(array $schedule)
     {
-        foreach ($schedule as $unit => $item) {
-            $param = (new OfferParam())
-                ->setName('План')
-                ->setUnit($unit)
-                ->setValue($item);
+        foreach ($schedule as $unit => $items) {
+            foreach ($items as $item) {
+                $param = (new OfferParam())
+                    ->setName('План')
+                    ->setUnit($unit)
+                    ->setValue($item);
 
-            $this->addParam($param);
+                $this->addParam($param);
+            }
         }
 
         return $this;
