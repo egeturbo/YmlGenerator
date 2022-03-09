@@ -142,7 +142,7 @@ class OfferCourse extends AbstractOffer
 
     public function setFormat($value)
     {
-        if (in_array($value, self::FORMATS, true)) {
+        if (!in_array($value, self::FORMATS, true)) {
             throw new InvalidArgumentException("Invalid format '$value'.");
         }
 
@@ -311,7 +311,7 @@ class OfferCourse extends AbstractOffer
 
     public function setResult($result)
     {
-        if (in_array($result, self::RESULTS, true)) {
+        if (!in_array($result, self::RESULTS, true)) {
             throw new InvalidArgumentException("Invalid result '$result'.");
         }
 
