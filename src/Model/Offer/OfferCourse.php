@@ -12,12 +12,26 @@
 namespace Bukashk0zzz\YmlGenerator\Model\Offer;
 
 use DateTimeInterface;
+use InvalidArgumentException;
 
 /**
  * Class OfferCourse
  */
 class OfferCourse extends AbstractOffer
 {
+    const FORMATS = [
+        'Самостоятельно',
+        'Самостоятельно с наставником',
+        'В группе c наставником',
+        'С преподавателем',
+    ];
+
+    const RESULTS = [
+        'Сертификат',
+        'Диплом',
+        'Удостоверение',
+    ];
+
     private $setIds = [];
 
     /**
@@ -40,6 +54,62 @@ class OfferCourse extends AbstractOffer
         return $this->setIds;
     }
 
+    public function setAdditionalCategory($additionalCategory)
+    {
+        $param = (new OfferParam())
+            ->setName('Дополнительная категория')
+            ->setValue($additionalCategory);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setContentUrl($contentUrl)
+    {
+        $param = (new OfferParam())
+            ->setName('Ссылка на контент курса')
+            ->setValue($contentUrl);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setSubscriptionPrice($hasSubscribe)
+    {
+        $param = (new OfferParam())
+            ->setName('Цена за подписку')
+            ->setValue((bool) $hasSubscribe);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setInstalmentPeriod($period, $unit = 'месяц')
+    {
+        $param = (new OfferParam())
+            ->setName('Оплата в рассрочку')
+            ->setUnit($unit)
+            ->setValue($period);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setMonthlyDiscountFinishDate(DateTimeInterface $discountFinishDate)
+    {
+        $param = (new OfferParam())
+            ->setName('Дата окончания ежемесячной скидки')
+            ->setValue($discountFinishDate->format('Y-m-d'));
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
     public function setDuration($duration, $unit = 'месяц')
     {
         $param = (new OfferParam())
@@ -54,12 +124,14 @@ class OfferCourse extends AbstractOffer
 
     public function setSchedule(array $schedule)
     {
+        $order = 1;
         foreach ($schedule as $unit => $items) {
             foreach ($items as $item) {
                 $param = (new OfferParam())
                     ->setName('План')
                     ->setUnit($unit)
-                    ->setValue($item);
+                    ->setValue($item)
+                    ->setOrder($order++);
 
                 $this->addParam($param);
             }
@@ -68,11 +140,15 @@ class OfferCourse extends AbstractOffer
         return $this;
     }
 
-    public function setIsFlexibleDates($isFlexibleDates)
+    public function setFormat($value)
     {
+        if (in_array($value, self::FORMATS, true)) {
+            throw new InvalidArgumentException("Invalid format '$value'.");
+        }
+
         $param = (new OfferParam())
-            ->setName('Гибкие даты')
-            ->setValue((bool) $isFlexibleDates);
+            ->setName('Формат обучения')
+            ->setValue($value);
 
         $this->addParam($param);
 
@@ -112,55 +188,22 @@ class OfferCourse extends AbstractOffer
         return $this;
     }
 
-    public function setIsFlexibleDeliveryDates($isFlexibleDeliveryDates)
+    public function setHasVideoLessons($hasVideoLessons)
     {
         $param = (new OfferParam())
-            ->setName('Гибкие сроки сдачи')
-            ->setValue((bool) $isFlexibleDeliveryDates);
+            ->setName('Есть видеоуроки')
+            ->setValue((bool) $hasVideoLessons);
 
         $this->addParam($param);
 
         return $this;
     }
 
-    public function setHasTrialPeriod($hasTrialPeriod)
+    public function setHasTextsLessons($hasTextsLessons)
     {
         $param = (new OfferParam())
-            ->setName('Есть пробный период')
-            ->setValue((bool) $hasTrialPeriod);
-
-        $this->addParam($param);
-
-        return $this;
-    }
-
-    public function setHasVideo($hasVideo)
-    {
-        $param = (new OfferParam())
-            ->setName('Есть видео')
-            ->setValue((bool) $hasVideo);
-
-        $this->addParam($param);
-
-        return $this;
-    }
-
-    public function setHasTests($hasTests)
-    {
-        $param = (new OfferParam())
-            ->setName('Есть тесты')
-            ->setValue((bool) $hasTests);
-
-        $this->addParam($param);
-
-        return $this;
-    }
-
-    public function setHasPractice($hasPractise)
-    {
-        $param = (new OfferParam())
-            ->setName('Есть практика')
-            ->setValue((bool) $hasPractise);
+            ->setName('Есть текстовые уроки')
+            ->setValue((bool) $hasTextsLessons);
 
         $this->addParam($param);
 
@@ -211,17 +254,6 @@ class OfferCourse extends AbstractOffer
         return $this;
     }
 
-    public function setHasTeacher($hasTeacher)
-    {
-        $param = (new OfferParam())
-            ->setName('Есть учитель')
-            ->setValue((bool) $hasTeacher);
-
-        $this->addParam($param);
-
-        return $this;
-    }
-
     public function setHasWebinars($hasWebinars)
     {
         $param = (new OfferParam())
@@ -238,6 +270,54 @@ class OfferCourse extends AbstractOffer
         $param = (new OfferParam())
             ->setName('Есть домашние работы')
             ->setValue((bool) $hasHomeworks);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setHasTrainer($hasTrainer)
+    {
+        $param = (new OfferParam())
+            ->setName('Есть тренажеры')
+            ->setValue((bool) $hasTrainer);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setHasCommunity($hasCommunity)
+    {
+        $param = (new OfferParam())
+            ->setName('Есть сообщество')
+            ->setValue((bool) $hasCommunity);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setClasses($classes)
+    {
+        $param = (new OfferParam())
+            ->setName('Классы')
+            ->setValue($classes);
+
+        $this->addParam($param);
+
+        return $this;
+    }
+
+    public function setResult($result)
+    {
+        if (in_array($result, self::RESULTS, true)) {
+            throw new InvalidArgumentException("Invalid result '$result'.");
+        }
+
+        $param = (new OfferParam())
+            ->setName('Результат обучения')
+            ->setValue($result);
 
         $this->addParam($param);
 

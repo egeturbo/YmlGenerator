@@ -335,6 +335,9 @@ class Generator
                 if ($param->getUnit()) {
                     $this->writer->writeAttribute('unit', $param->getUnit());
                 }
+                if ($param->getOrder()) {
+                    $this->writer->writeAttribute('order', $param->getOrder());
+                }
                 $this->writer->text($param->getValue());
 
                 $this->writer->endElement();

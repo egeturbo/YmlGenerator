@@ -32,6 +32,11 @@ class OfferParam
     private $value;
 
     /**
+     * @var int
+     */
+    private $order;
+
+    /**
      * @return string
      */
     public function getName()
@@ -91,6 +96,26 @@ class OfferParam
         }
 
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param int $order
+     *
+     * @return OfferParam
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
 
         return $this;
     }
