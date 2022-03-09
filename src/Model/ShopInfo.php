@@ -62,6 +62,11 @@ class ShopInfo
     private $autoDiscount;
 
     /**
+     * @var string
+     */
+    private $description;
+
+    /**
      * @return array
      */
     public function toArray()
@@ -76,6 +81,7 @@ class ShopInfo
             'agency' => $this->getAgency(),
             'email' => $this->getEmail(),
             'enable_auto_discounts' => $this->getAutoDiscount(),
+            'description' => $this->getDescription(),
         ];
     }
 
@@ -255,6 +261,26 @@ class ShopInfo
     public function setPicture($picture)
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return ShopInfo
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }
