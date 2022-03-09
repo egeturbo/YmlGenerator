@@ -34,6 +34,11 @@ class ShopInfo
     /**
      * @var string
      */
+    private $picture;
+
+    /**
+     * @var string
+     */
     private $platform;
 
     /**
@@ -65,6 +70,7 @@ class ShopInfo
             'name' => $this->getName(),
             'company' => $this->getCompany(),
             'url' => $this->getUrl(),
+            'picture' => $this->getPicture(),
             'platform' => $this->getPlatform(),
             'version' => $this->getVersion(),
             'agency' => $this->getAgency(),
@@ -229,6 +235,26 @@ class ShopInfo
     public function setAutoDiscount($autoDiscount)
     {
         $this->autoDiscount = $autoDiscount;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param string $picture
+     *
+     * @return ShopInfo
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
 
         return $this;
     }
